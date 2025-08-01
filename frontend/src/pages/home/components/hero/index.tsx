@@ -1,6 +1,6 @@
 import { ArrowRight, Bell, Download, Lock, Shield } from "lucide-react"
-import Button from "../../../shared/ui/button"
-import { Badge } from "../../../shared/ui/badge"
+import { Badge, Description, Icon } from "../../../../shared/ui/badge"
+import { Button } from "../../../../shared/ui/button"
 
 export function HeroSection() {
   return (
@@ -11,10 +11,13 @@ export function HeroSection() {
             <div className="flex items-center justify-center">
               <Badge
                 variant="primary"
-                description="Segurança garantida 24/7"
-                icon={<Shield />}
                 className="bg-primary/10 text-primary font-semibold"
-              />
+              >
+                <Icon>
+                  <Shield />
+                </Icon>
+                <Description>Segurança garantida 24/7</Description>
+              </Badge>
             </div>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
@@ -70,23 +73,26 @@ export function HeroSection() {
             </div>
 
             <div className="flex flex-wrap gap-3 justify-center">
-              <Badge
-                description="Bloqueio Remoto"
-                icon={<Lock />}
-                variant="outline"
-              />
+              <Badge variant="outline">
+                <Icon>
+                  <Lock />
+                </Icon>
+                <Description>Bloqueio Remoto</Description>
+              </Badge>
 
-              <Badge
-                description="Alerta em Tempo Real"
-                icon={<Bell />}
-                variant="outline"
-              />
+              <Badge variant="outline">
+                <Icon>
+                  <Lock />
+                </Icon>
+                <Description>Alerta em Tempo Real</Description>
+              </Badge>
 
-              <Badge
-                description="Sistema Tróia"
-                icon={<Shield />}
-                variant="outline"
-              />
+              <Badge variant="outline">
+                <Icon>
+                  <Shield />
+                </Icon>
+                <Description>Sistema Tróia</Description>
+              </Badge>
             </div>
           </div>
         </div>

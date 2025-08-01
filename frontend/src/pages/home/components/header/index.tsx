@@ -1,18 +1,41 @@
 import { Menu, X } from "lucide-react"
-import { useState } from "react"
-import Button from "../../../shared/ui/button"
-import { ToggleTheme } from "../../../shared/ui/toggle-theme"
-import { NavBar } from "./navbar"
-import { Logo } from "../../../shared/ui/logo"
+import { useEffect, useState } from "react"
+import { Button } from "../../../../shared/ui/button"
+import { ToggleTheme } from "../../../../shared/ui/toggle-theme"
+import { Logo } from "../../../../shared/ui/logo"
+import { NavBar } from "./components/navbar"
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
+
+  const [isScrolled, setIsScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 10) {
+        setIsScrolled(true)
+      } else {
+        setIsScrolled(false)
+      }
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+    }
+  }, [])
 
   function toggleMenu() {
     setMenuOpen((prev) => !prev)
   }
   return (
-    <header className=" fixed top-0 left-0 right-0 z-50 transition-all duration-300 ">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? "bg-background/95 backdrop-blur-xs shadow-xs"
+          : "bg-transparent"
+      }`}
+    >
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <Logo />
 

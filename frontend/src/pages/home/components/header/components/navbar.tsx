@@ -1,19 +1,6 @@
-import type { ReactNode } from "react"
 import { NavLink } from "react-router"
-
-type NavBarProps = {
-  children?: ReactNode
-  className?: string
-}
-
-const navItens = [
-  { label: "Funcionalidades", href: "#funcionalidades" },
-  { label: "Depoimentos", href: "#depoimentos" },
-  { label: "Planos", href: "#planos" },
-  { label: "FAQ", href: "#faq" },
-  { label: "Contato", href: "#contato" },
-  { label: "Admin", href: "/admin" },
-]
+import { navItens } from "../data/navItens"
+import type { NavBarProps } from "../type"
 
 export function NavBar({ children, className }: Readonly<NavBarProps>) {
   return (

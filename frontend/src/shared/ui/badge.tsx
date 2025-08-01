@@ -1,11 +1,11 @@
-import type { ReactElement } from "react"
+import type { ReactNode } from "react"
 import React from "react"
+import { cn } from "../util/tw-merge"
 
 interface BadgeProps {
-  description: string
-  icon?: ReactElement<{ className?: string }>
   className?: string
   variant: "primary" | "outline"
+  children: ReactNode
 }
 
 const type = {
@@ -13,17 +13,31 @@ const type = {
   outline: "bg-secondary/50",
 }
 
-export function Badge({ icon, description, className, variant }: BadgeProps) {
+export function Badge({ className, variant, children }: Readonly<BadgeProps>) {
   return (
     <div className="flex flex-wrap">
       <div
-        className={`flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full ${className} ${type[variant]}`}
+        className={cn(
+          `flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full ${type[variant]}`,
+          className
+        )}
       >
-        {icon &&
-          React.isValidElement(icon) &&
-          React.cloneElement(icon, { className: "w-3.5 h-3.5 text-primary" })}
-        <span>{description}</span>
+        {children}
       </div>
     </div>
   )
+}
+
+export function Icon({ children }) {
+  return (
+    <div>
+      {React.cloneElement(children, {
+        className: cn("w-3.5 h-3.5 text-primary", children.props.className),
+      })}
+    </div>
+  )
+}
+
+export function Description({ children }) {
+  return <span>{children}</span>
 }
