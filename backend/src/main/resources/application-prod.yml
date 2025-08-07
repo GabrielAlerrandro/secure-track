@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: track
+  mvc:
+    servlet:
+      path: /api/v1
+  datasource:
+    url: só_deus_sabe
+    driver-class-name: org.postgresql.Driver
+    username: uma_hora_vai_ter
+    password: uma_hora_vai_ter
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
