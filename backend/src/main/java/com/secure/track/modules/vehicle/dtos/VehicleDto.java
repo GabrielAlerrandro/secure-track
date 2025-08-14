@@ -1,10 +1,16 @@
 package com.secure.track.modules.vehicle.dtos;
 
-import lombok.Builder;
-import lombok.Data;
+import java.util.UUID;
+import com.secure.track.modules.vehicle.models.VehicleStatus;
 
-@Data
+import lombok.Builder;
+
 @Builder
-public class VehicleDto {
-    
-}
+public record VehicleDto(
+    String model,
+    String plate,
+    VehicleStatus status,
+    String lastLocation,
+    Boolean isBlocked,
+    UUID user
+) {}

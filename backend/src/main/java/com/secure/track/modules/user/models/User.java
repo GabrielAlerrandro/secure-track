@@ -1,11 +1,13 @@
 package com.secure.track.modules.user.models;
 
 import java.time.Instant;
+import java.util.List;
 import java.util.UUID;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
@@ -13,12 +15,13 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.UuidGenerator;
+import com.secure.track.modules.vehicle.models.Vehicle;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
+import jakarta.persistence.CascadeType;
 
-// base model subject to changes or addition of elements
 @Data
 @Builder
 @NoArgsConstructor
@@ -92,5 +95,8 @@ public class User {
         createdAt = Instant.now();
         updatedAt = Instant.now();
     }
-}
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Vehicle> vehicle;
+
+}

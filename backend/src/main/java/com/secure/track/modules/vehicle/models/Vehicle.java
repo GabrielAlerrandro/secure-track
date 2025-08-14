@@ -2,22 +2,26 @@ package com.secure.track.modules.vehicle.models;
 
 import org.hibernate.annotations.UuidGenerator;
 import org.springframework.data.annotation.Id;
+import com.secure.track.modules.user.models.User;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import lombok.Builder;
 import lombok.Data;
-
 import java.util.UUID;
 
     @Entity
     @Data
+    @Builder
     @Table(name = "vehicles")
     public class Vehicle {
 
@@ -45,4 +49,8 @@ import java.util.UUID;
 
         @NotNull(message = "isBlocked must not be null")
         private Boolean isBlocked;
+
+        @ManyToOne
+        @JoinColumn(name = "user_id", nullable = false)
+        private User user;
     }

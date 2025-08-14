@@ -1,7 +1,6 @@
 package com.secure.track.common.dtos;
 
 import java.time.Instant;
-import java.util.List;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -11,5 +10,5 @@ import lombok.Getter;
 public class APIResponse<T> {
     private final Instant timestamp;
     private final T data;
-    private final List<String> errors;
+    private final boolean sucess;
 }
